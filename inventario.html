@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiciRent Pro - Panel de Inventario</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container" style="max-width: 900px; margin: 0 auto;">
+        <header class="app-header">
+            <div class="logo-area">
+                <h1>Panel de <span class="accent-text">Inventario</span></h1>
+            </div>
+            <div style="margin-top: 15px;">
+                <a href="index.html" class="btn-secondary" style="text-decoration: none; padding: 8px 16px; font-size: 0.9rem;">← Volver a Ventana de Rentas</a>
+            </div>
+        </header>
+
+        <main class="main-content" style="grid-template-columns: 1fr;">
+            <section class="card">
+                <div class="card-header">
+                    <h2>Existencias en Almacén</h2>
+                    <p>Modifica el número de unidades disponibles y presiona "Actualizar" para guardar los cambios en el arreglo.</p>
+                </div>
+
+                <div style="overflow-x: auto; margin-top: 20px;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;" id="tablaInventario">
+                        <thead>
+                            <tr style="background-color: var(--bg-soft); border-bottom: 2px solid var(--border-color);">
+                                <th style="padding: 12px;">ID</th>
+                                <th style="padding: 12px;">Marca / Modelo</th>
+                                <th style="padding: 12px;">Categoría</th>
+                                <th style="padding: 12px;">Tarifa / Hora</th>
+                                <th style="padding: 12px;">Color</th>
+                                <th style="padding: 12px; width: 180px;">Stock Actual</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaBicicletas">
+                            <tr>
+                                <td colspan="6" style="padding: 20px; text-align: center;">Cargando existencias...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Cargar el catálogo dinámicamente desde el JSON estructurado
+        fetch('obtener_inventario.php')
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.getElementById('listaBicicletas');
+                tbody.innerHTML = ''; // Limpiar mensaje de carga
+
+                if(data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:20px;">No hay unidades registradas.</td></tr>';
+                    return;
+                }
+
+                data.forEach(bici => {
+                    const tr = document.createElement('tr');
+                    tr.style.borderBottom = "1px solid var(--border-color)";
+                    
+                    // Al stock le asignamos un estado visual crítico si está en 0
+                    const stockClass = bici.stock === 0 ? 'style="color: #dc2626; font-weight: bold;"' : '';
+
+                    tr.innerHTML = `
+                        <td style="padding: 12px; font-weight: 600;">${bici.id}</td>
+                        <td style="padding: 12px;">${bici.marca}</td>
+                        <td style="padding: 12px;"><span class="badge">${bici.tipo}</span></td>
+                        <td style="padding: 12px;">$${bici.tarifa}/h</td>
+                        <td style="padding: 12px;">${bici.color}</td>
+                        <td style="padding: 12px;">
+                            <form action="actualizar_stock.php" method="POST" style="display: flex; gap: 8px; align-items: center; margin: 0;">
+                                <input type="hidden" name="idBicicleta" value="${bici.id}">
+                                <input type="number" name="nuevoStock" value="${bici.stock}" min="0" max="99" required 
+                                       style="width: 70px; padding: 6px; text-align: center; border-radius: 6px; border: 1px solid var(--border-color);" ${stockClass}>
+                                <button type="submit" class="btn-primary" style="padding: 6px 12px; font-size: 0.8rem; margin: 0;">
+                                    Guardar
+                                </button>
+                            </form>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(err => {
+                document.getElementById('listaBicicletas').innerHTML = '<tr><td colspan="6" style="text-align:center; color:red; padding:20px;">Error al conectar con el inventario.</td></tr>';
+            });
+    </script>
+</body>
+</html>

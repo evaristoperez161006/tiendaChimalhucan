@@ -1,0 +1,438 @@
+/* ==========================================================================
+   1. VARIABLES DE DISEÑO (SISTEMA DE DISEÑO)
+   ========================================================================== */
+:root {
+    --primary-color: #2563eb;       /* Azul Moderno */
+    --primary-hover: #1d4ed8;
+    --accent-color: #059669;        /* Verde Esmeralda (Éxito / Pro) */
+    --accent-hover: #047857;
+    --danger-color: #dc2626;        /* Rojo (Agotado / Error) */
+    --text-main: #1e293b;           /* Gris Oscuro Principal */
+    --text-muted: #64748b;          /* Gris Secundario */
+    --bg-main: #f8fafc;             /* Fondo General de la App */
+    --bg-soft: #f1f5f9;             /* Fondo Suave para Bloques */
+    --card-bg: #ffffff;             /* Fondo de Tarjetas */
+    --border-color: #e2e8f0;        /* Bordes Estándar */
+    --radius-lg: 12px;
+    --radius-md: 8px;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --transition: all 0.25s ease;
+}
+
+/* ==========================================================================
+   2. RESETEO GLOBAL Y CONFIGURACIÓN BASE
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+/* ==========================================================================
+   3. CABECERA (HEADER) RESPONSIVA
+   ========================================================================== */
+.app-header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding: 24px 16px;
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    color: var(--primary-color);
+}
+
+.app-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.accent-text {
+    color: var(--accent-color);
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   4. TARJETAS (CARDS) Y DISEÑO DE CONTENIDO
+   ========================================================================== */
+.main-content {
+    display: grid;
+    gap: 24px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+.card-header {
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 16px;
+}
+
+.card-header h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.card-header p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+/* ==========================================================================
+   5. FORMULARIOS INTELIGENTES Y RESPONSIVOS
+   ========================================================================== */
+.form-group-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 24px 0 12px 0;
+    border-left: 3px solid var(--primary-color);
+    padding-left: 8px;
+}
+
+/* Filas autoregulables mediante CSS Grid */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group select {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: var(--card-bg);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Checkboxes Customizados */
+.checkbox-group-container {
+    margin: 12px 0;
+}
+
+.checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.92rem;
+    font-weight: 500;
+    user-select: none;
+}
+
+/* ==========================================================================
+   6. GRID DE SERVICIOS ADICIONALES (RESPONSIVO)
+   ========================================================================== */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.service-card {
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(37, 99, 235, 0.02);
+}
+
+.service-card input[type="checkbox"] {
+    margin-top: 4px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-color);
+}
+
+.service-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.service-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.service-price {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   7. BOTONES
+   ========================================================================== */
+.btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    width: 100%; /* Botón principal abarca todo en móviles */
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+}
+
+.btn-primary:disabled {
+    background-color: var(--text-muted);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background-color: var(--bg-soft);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--border-color);
+}
+
+/* ==========================================================================
+   8. TABLAS DE INVENTARIO RESPONSIVAS
+   ========================================================================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+td {
+    font-size: 0.92rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background-color: var(--bg-soft);
+    border-radius: 20px;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   9. DISEÑO DE TICKET / COMPROBANTE DIGITAL
+   ========================================================================== */
+.receipt-card {
+    background: #fff;
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+
+.ticket-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ticket-company {
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+}
+
+.ticket-title {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.ticket-divider {
+    border-top: 2px dashed var(--border-color);
+    margin: 16px 0;
+}
+
+.ticket-meta p, .ticket-section p {
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Evita desbordamiento en pantallas diminutas */
+}
+
+.ticket-section h4 {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.ticket-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.ticket-totals {
+    background-color: var(--bg-main);
+    padding: 12px;
+    border-radius: var(--radius-md);
+}
+
+.ticket-totals .total {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-main);
+    border-top: 1px solid var(--border-color);
+    padding-top: 8px;
+    margin-top: 8px;
+}
+
+.ticket-totals .discount {
+    color: var(--danger-color);
+}
+
+.ticket-footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 20px;
+}
+
+/* ==========================================================================
+   10. MEDIA QUERIES (OPTIMIZACIONES ADICIONALES)
+   ========================================================================== */
+
+/* Ajustes para pantallas de Escritorio (Grandes) */
+@media (min-width: 768px) {
+    .btn-primary {
+        width: auto; /* El botón recupera su tamaño nativo */
+        padding: 12px 32px;
+    }
+    
+    .app-header h1 {
+        font-size: 2.3rem;
+    }
+}
+
+/* Ajustes extremos para teléfonos muy pequeños (Menos de 400px) */
+@media (max-width: 400px) {
+    .card {
+        padding: 16px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr; /* Un solo accesorio por fila */
+    }
+    
+    .app-header h1 {
+        font-size: 1.6rem;
+    }
+}
+
+/* Ajustes especiales para la impresión del Ticket */
+@media print {
+    body {
+        background: #fff;
+    }
+    .app-header, .btn-secondary, .btn-primary, .ticket-footer a {
+        display: none !important; /* Oculta controles al imprimir */
+    }
+    .card {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+}

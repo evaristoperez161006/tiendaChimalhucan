@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiciRent Pro - Registro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-area">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="5.5" cy="17.5" r="2.5"/>
+                    <circle cx="18.5" cy="17.5" r="2.5"/>
+                    <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 5.5L15 6l3 4.5M5.5 17.5L9 9h6l3.5 8.5M12 9v3.5"/>
+                </svg>
+                <h1>Bici<span class="accent-text">Chimalhuacan</span></h1>
+            </div>
+        
+            
+            <div style="margin-top: 15px;">
+                <a href="inventario.html" class="btn-secondary" style="text-decoration: none; padding: 8px 16px; font-size: 0.9rem; display: inline-block;">
+                    ⚙ Administrar Inventario
+                </a>
+            </div>
+            </header>
+
+        <main class="main-content" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
+            <section class="form-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Registrar Nueva Renta</h2>
+                        <p>Los datos de inventario se leen en tiempo real de forma dinámica.</p>
+                    </div>
+                    
+                    <form action="procesar.php" method="POST" id="formRenta">
+                        <div class="form-group-title">Atención del Sistema</div>
+                        <div class="form-group">
+                            <label for="datosEmpleado">Empleado / Operador en Turno</label>
+                            <select name="datosEmpleado" id="datosEmpleado" required>
+                                <option value="EMP-402|Carlos Mendoza|Cajero|Matutino">Carlos Mendoza (Cajero - Turno Matutino)</option>
+                                <option value="EMP-115|Ana Gómez|Supervisora|Vespertino">Ana Gómez (Cajero - Turno Vespertino)</option>
+                                <option value="EMP-908|Emmanuel Romero|Administrador|Mixto">lalo Romero (Administrador - Turno Mixto)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group-title">Información del Cliente</div>
+                        <div class="form-group">
+                            <label for="nombreCliente">Nombre Completo</label>
+                            <input type="text" name="nombreCliente" id="nombreCliente" required placeholder="Ej. Juan Pérez">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="telefonoCliente">Teléfono</label>
+                                <input type="tel" name="telefonoCliente" id="telefonoCliente" required placeholder="Ej. 5512345678">
+                            </div>
+                            <div class="form-group">
+                                <label for="emailCliente">Correo Electrónico</label>
+                                <input type="email" name="emailCliente" id="emailCliente" required placeholder="ejemplo@correo.com">
+                            </div>
+                        </div>
+                        <div class="form-group checkbox-group-container">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="tieneMembresia" id="tieneMembresia">
+                                <span class="custom-checkbox"></span>
+                                Tiene Membresía Premium (15% Desc.)
+                            </label>
+                        </div>
+
+                        <div class="form-group-title">Especificaciones de la Unidad</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="tipoBicicleta">Seleccionar Bicicleta Disponible</label>
+                                <select name="tipoBicicleta" id="tipoBicicleta" required>
+                                    <option value="" disabled selected>Cargando catálogo...</option>
+                                </select>
+                                <div id="stockIndicator" style="margin-top: 6px; font-size: 0.85rem; font-weight: 500;"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cantidadHoras">Tiempo de Alquiler (Horas)</label>
+                                <input type="number" name="cantidadHoras" id="cantidadHoras" min="1" max="72" required placeholder="Ej. 3">
+                            </div>
+                        </div>
+
+                        <div class="form-group-title">Servicios y Accesorios Opcionales</div>
+                        <div class="services-grid">
+                            <label class="service-card">
+                                <input type="checkbox" name="servicios[SRV-01]" value="Casco|15|Casco de seguridad con certificación de impacto">
+                                <div class="service-content">
+                                    <span class="service-name">Casco Certificado</span>
+                                    <span class="service-price">+$15</span>
+                                </div>
+                            </label>
+                            <label class="service-card">
+                                <input type="checkbox" name="servicios[SRV-02]" value="Candado|10|Candado de combinación de acero reforzado">
+                                <div class="service-content">
+                                    <span class="service-name">Candado de Alta Seguridad</span>
+                                    <span class="service-price">+$10</span>
+                                </div>
+                            </label>
+                            <label class="service-card">
+                                <input type="checkbox" name="servicios[SRV-03]" value="Chaleco|10|Chaleco reflejante de alta visibilidad vial">
+                                <div class="service-content">
+                                    <span class="service-name">Chaleco Reflejante</span>
+                                    <span class="service-price">+$10</span>
+                                </div>
+                            </label>
+                            <label class="service-card">
+                                <input type="checkbox" name="servicios[SRV-04]" value="Kit Reparación|20|Kit básico con parches, inflador y llaves multiusos">
+                                <div class="service-content">
+                                    <span class="service-name">Kit Anti-Ponchaduras</span>
+                                    <span class="service-price">+$20</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn-primary" id="btnEnviar">
+                            <span>Finalizar Renta</span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const selectBici = document.getElementById('tipoBicicleta');
+        const stockIndicator = document.getElementById('stockIndicator');
+        const btnEnviar = document.getElementById('btnEnviar');
+        let bicicletasData = [];
+
+        fetch('obtener_inventario.php')
+            .then(response => response.json())
+            .then(data => {
+                bicicletasData = data;
+                selectBici.innerHTML = '<option value="" disabled selected>Seleccione una opción</option>';
+                
+                data.forEach(bici => {
+                    const option = document.createElement('option');
+                    option.value = bici.id;
+                    option.textContent = `${bici.marca} ${bici.tipo} ($${bici.tarifa}/h)`;
+                    
+                    if(bici.stock <= 0) {
+                        option.disabled = true;
+                        option.textContent += ' - [AGOTADA]';
+                    }
+                    selectBici.appendChild(option);
+                });
+            })
+            .catch(err => {
+                selectBici.innerHTML = '<option value="" disabled>Error al cargar catálogo</option>';
+            });
+
+        selectBici.addEventListener('change', () => {
+            const idSeleccionado = selectBici.value;
+            const biciSeleccionada = bicicletasData.find(b => b.id === idSeleccionado);
+
+            if(biciSeleccionada) {
+                if(biciSeleccionada.stock > 0) {
+                    stockIndicator.style.color = "#059669";
+                    stockIndicator.textContent = `✔ Stock existente: ${biciSeleccionada.stock} unidades disponibles.`;
+                    btnEnviar.disabled = false;
+                } else {
+                    stockIndicator.style.color = "#dc2626";
+                    stockIndicator.textContent = `❌ Stock agotado para este modelo.`;
+                    btnEnviar.disabled = true;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
