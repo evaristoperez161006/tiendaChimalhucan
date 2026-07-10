@@ -1,0 +1,34 @@
+[
+    {
+        "id": "BICI-101",
+        "tipo": "Urbana",
+        "tarifa": 30,
+        "marca": "Benotto",
+        "color": "Negro Mate",
+        "stock": 4
+    },
+    {
+        "id": "BICI-204",
+        "tipo": "Monta\u00f1a",
+        "tarifa": 50,
+        "marca": "Trek",
+        "color": "Verde Ne\u00f3n",
+        "stock": 0
+    },
+    {
+        "id": "BICI-088",
+        "tipo": "Infantil",
+        "tarifa": 25,
+        "marca": "Alubike",
+        "color": "Rojo Fuego",
+        "stock": 0
+    },
+    {
+        "id": "BICI-550",
+        "tipo": "El\u00e9ctrica",
+        "tarifa": 80,
+        "marca": "Xiaomi",
+        "color": "Gris Plata",
+        "stock": 0
+    }
+]
